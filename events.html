@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script>
+			if (!localStorage.getItem('counter'))
+				localStorage.setItem('counter',0);
+
+			document.addEventListener('DOMContentLoaded', () => {
+				document.querySelector('#counter').innerHTML = localStorage.getItem('counter')
+				document.querySelector('#button1').onclick = () => {
+					let counter = localStorage.getItem('counter');
+					counter++;
+					document.querySelector('#counter').innerHTML = counter;
+					localStorage.setItem('counter', counter);
+				}
+				document.querySelector('#button2').onclick = () => {
+					let counter = localStorage.getItem('counter');
+					counter = 0;
+					document.querySelector('#counter').innerHTML = counter;
+					localStorage.setItem('counter', counter);
+				}
+			});
+		</script>
+		<title>My Website</title>
+	</head>
+	<body>
+		<h1 id="counter">0</h1>
+		<button id="button1">Click Here!</button>
+		<button id="button2">Reset</button>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.js"></script>
+		<script id="result" type="text/x-handlebars-template">
+			<li> You rolled a {{ value }} </li>
+		</script>
+		<script id="filler" type="text/x-handlebars-template">
+			<li style="color:white;"> </li>
+		</script>
+		<script>
+			const template1 = Handlebars.compile(document.querySelector("#result").innerHTML);
+			const template2 = Handlebars.compile(document.querySelector("#filler").innerHTML);
+			document.addEventListener('DOMContentLoaded', () => {
+				console.log('----');
+				console.log(window.innerHeight);
+				console.log(window.scrollY);
+				console.log(document.body.offsetHeight);
+				while (window.innerHeight >= document.body.offsetHeight) {
+					document.querySelector('#fill').innerHTML += template2();
+				}
+			})
+			window.onscroll = () => {
+				console.log('----');
+				console.log(window.innerHeight);
+				console.log(window.scrollY);
+				console.log(document.body.offsetHeight);
+				if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+					const roll = Math.floor((Math.random() * 6) + 1);
+					const content = template1({'value': roll});
+					document.querySelector('#rolls').innerHTML += content;
+				}
+			}
+		</script>
+		<title>My Webpage</title>
+	</head>
+	<body>
+		<p>Scroll to roll:</p>
+		<ul id="fill">
+
+		</ul>
+		<ul id="rolls">
+
+		</ul>
+	</body>
+</html>
